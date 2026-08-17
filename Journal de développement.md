@@ -11,3 +11,5 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
 - Calendrier professionnel : recherche, disponibilités hebdomadaires,
   indisponibilités, contrôle de version, aperçu des annulations et génération
   de créneaux sur sept jours avec Luxon.
+- Rendez-vous : réservation client, création manuelle restaurateur, listes,
+  détail, historique initial, code public et annulation transactionnelle.
