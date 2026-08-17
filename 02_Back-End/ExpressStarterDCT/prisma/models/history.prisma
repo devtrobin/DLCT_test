@@ -1,0 +1,13 @@
+model AppointmentHistory {
+  id            Int              @id @default(autoincrement())
+  appointmentId Int
+  eventType     HistoryEventType
+  actorUserId   Int?
+  actorType     HistoryActorType
+  payload       Json
+  createdAt     DateTime         @default(now()) @db.Timestamptz(3)
+  appointment   Appointment      @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  actor         User?            @relation("HistoryActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([appointmentId, createdAt, id])
+}

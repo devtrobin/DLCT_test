@@ -1,0 +1,40 @@
+node_modules/
+dist/
+build/
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Auth keys
+auth/*.pem
+
+# Logs
+*.log
+logs/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+__test__/
+*.test.ts
+*.spec.ts
+jest.config.ts
+
+# Docker
+Dockerfile
+dev.Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Docs
+README.md
+CLAUDE.md

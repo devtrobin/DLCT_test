@@ -1,0 +1,231 @@
+From: thomas robin <thomas.robin94@hotmail.fr>
+To: kevin favergeaud <kevin@delicity.com>
+Subject: RE: [Delicity] Test technique
+Thread-Topic: [Delicity] Test technique
+Thread-Index: AQHdKmQW1LuCXcsRDkmAd1xZutKvYbabuKRD
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Thu, 13 Aug 2026 09:35:31 +0000
+Message-ID:
+	<AM4P195MB311159A5A29D83D9B8949B02EDDB2@AM4P195MB3111.EURP195.PROD.OUTLOOK.COM>
+References:
+	<CAFXJ8_cgFaxk06K9Gb5eeTNKcM9hfXYMiXenyxojbqBmnV3Mfg@mail.gmail.com>
+In-Reply-To:
+	<CAFXJ8_cgFaxk06K9Gb5eeTNKcM9hfXYMiXenyxojbqBmnV3Mfg@mail.gmail.com>
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+msip_labels:
+Content-Type: multipart/alternative;
+	boundary="_000_AM4P195MB311159A5A29D83D9B8949B02EDDB2AM4P195MB3111EURP_"
+MIME-Version: 1.0
+
+--_000_AM4P195MB311159A5A29D83D9B8949B02EDDB2AM4P195MB3111EURP_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour Kevin,
+
+J'ai bien re=E7u le test technique.
+
+Comme convenue j'utiliserais git pour l'historique du projet et j'=E9ssaier=
+ai de le terminer pour lundi prochain.
+
+Cordialement,
+Thomas ROBIN
+________________________________
+De : kevin favergeaud <kevin@delicity.com>
+Envoy=E9 : mercredi 12 ao=FBt 2026 16:08
+=C0 : thomas.robin94@hotmail.fr <thomas.robin94@hotmail.fr>
+Objet : [Delicity] Test technique
+
+
+Bonjour Thomas,
+
+Comme convenu, voici le test technique que je te propose.
+
+L=92objectif n=92est pas de te tester sur ta capacit=E9 =E0 coder sans assi=
+stance : tu peux utiliser librement les outils d=92IA que tu utilises habit=
+uellement (Claude Code, Codex, Cursor, Copilot, etc.), ainsi que toute docu=
+mentation n=E9cessaire.
+
+L=92id=E9e est surtout de voir comment tu abordes un probl=E8me, les choix =
+techniques que tu fais et la qualit=E9 globale de ton impl=E9mentation.
+
+Projet
+
+L=92objectif est de d=E9velopper une petite application de prise de rendez-=
+vous, deux repos :
+
+  *   un backend bas=E9 sur notre starter Express/TypeScript :
+https://github.com/kevinfavv/ExpressStarterDCT
+  *   un frontend en Vue.js
+
+Un professionnel doit pouvoir :
+
+  *   d=E9finir ses horaires de disponibilit=E9 habituels pour chaque jour =
+de la semaine
+  *   avoir plusieurs plages horaires dans une m=EAme journ=E9e
+  *   d=E9finir des indisponibilit=E9s exceptionnelles, ponctuelles ou sur =
+plusieurs jours
+  *   disposer d=92un fuseau horaire
+
+Un client doit pouvoir :
+
+  *   consulter les cr=E9neaux disponibles d=92un professionnel sur une p=
+=E9riode donn=E9e
+  *   consulter ces cr=E9neaux dans le fuseau horaire de son choix
+  *   r=E9server un rendez-vous
+  *   annuler un rendez-vous
+
+Un rendez-vous ne doit pouvoir =EAtre pris que lorsque le professionnel est=
+ r=E9ellement disponible et deux rendez-vous ne doivent pas pouvoir se chev=
+aucher.
+
+Contraintes techniques
+
+  *   Backend bas=E9 sur ExpressStarterDCT
+  *   Frontend en Vue.js
+  *   Utiliser PostgreSQL / Prisma pour la persistance
+  *   G=E9rer correctement les fuseaux horaires, y compris les changements =
+heure d=92=E9t=E9 / heure d=92hiver
+  *   Fournir les migrations n=E9cessaires
+  *   Ajouter les tests qui te semblent pertinents
+  *   Historique Git
+
+L=92ensemble du back-end doit pouvoir =EAtre lanc=E9 simplement avec :
+
+docker compose up
+
+Pour le reste =97 mod=E8le de donn=E9es, architecture, endpoints, validatio=
+ns, UX, gestion des dates, contraintes en base, organisation du frontend, e=
+tc. =97 les choix sont volontairement laiss=E9s libres.
+
+Ajoute simplement un petit README expliquant comment lancer le projet et, s=
+i n=E9cessaire, les principaux choix que tu as faits.
+
+Une fois le test termin=E9, on prendra =E9galement un moment ensemble pour =
+parcourir ton impl=E9mentation et discuter de tes choix.
+
+Bon courage et =E0 bient=F4t,
+
+Kevin
+
+--_000_AM4P195MB311159A5A29D83D9B8949B02EDDB2AM4P195MB3111EURP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Bonjour Kevin,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+J'ai bien re=E7u le test technique.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Comme convenue j'utiliserais git pour l'historique du projet et j'=E9ssaier=
+ai de le terminer pour lundi prochain.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Cordialement,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Thomas ROBIN</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>De :</b> kevin favergeaud &lt;k=
+evin@delicity.com&gt;<br>
+<b>Envoy=E9 :</b> mercredi 12 ao=FBt 2026 16:08<br>
+<b>=C0 :</b> thomas.robin94@hotmail.fr &lt;thomas.robin94@hotmail.fr&gt;<br=
+>
+<b>Objet :</b> [Delicity] Test technique</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<p class=3D"x_gmail-isSelectedEnd">Bonjour Thomas,</p>
+<p class=3D"x_gmail-isSelectedEnd">Comme convenu, voici le test technique q=
+ue je te propose.</p>
+<p class=3D"x_gmail-isSelectedEnd">L=92objectif n=92est pas de te tester su=
+r ta capacit=E9 =E0 coder sans assistance :
+<strong>tu peux utiliser librement les outils d=92IA que tu utilises habitu=
+ellement</strong> (Claude Code, Codex, Cursor, Copilot, etc.), ainsi que to=
+ute documentation n=E9cessaire.</p>
+<p class=3D"x_gmail-isSelectedEnd">L=92id=E9e est surtout de voir comment t=
+u abordes un probl=E8me, les choix techniques que tu fais et la qualit=E9 g=
+lobale de ton impl=E9mentation.</p>
+<h3>Projet</h3>
+<p class=3D"x_gmail-isSelectedEnd">L=92objectif est de d=E9velopper une pet=
+ite <strong>
+application de prise de rendez-vous</strong>, deux repos :</p>
+<ul>
+<li>un backend bas=E9 sur notre starter Express/TypeScript :<br>
+<a href=3D"https://github.com/kevinfavv/ExpressStarterDCT">https://github.c=
+om/kevinfavv/ExpressStarterDCT</a></li><li>un frontend en <strong>Vue.js</s=
+trong></li></ul>
+<p class=3D"x_gmail-isSelectedEnd">Un professionnel doit pouvoir :</p>
+<ul>
+<li>d=E9finir ses horaires de disponibilit=E9 habituels pour chaque jour de=
+ la semaine</li><li>avoir plusieurs plages horaires dans une m=EAme journ=
+=E9e</li><li>d=E9finir des indisponibilit=E9s exceptionnelles, ponctuelles =
+ou sur plusieurs jours</li><li>disposer d=92un fuseau horaire</li></ul>
+<p class=3D"x_gmail-isSelectedEnd">Un client doit pouvoir :</p>
+<ul>
+<li>consulter les cr=E9neaux disponibles d=92un professionnel sur une p=E9r=
+iode donn=E9e</li><li>consulter ces cr=E9neaux dans le fuseau horaire de so=
+n choix</li><li>r=E9server un rendez-vous</li><li>annuler un rendez-vous</l=
+i></ul>
+<p class=3D"x_gmail-isSelectedEnd">Un rendez-vous ne doit pouvoir =EAtre pr=
+is que lorsque le professionnel est r=E9ellement disponible et deux rendez-=
+vous ne doivent pas pouvoir se chevaucher.</p>
+<h3>Contraintes techniques</h3>
+<ul>
+<li>Backend bas=E9 sur <code dir=3D"ltr">ExpressStarterDCT</code></li><li>F=
+rontend en Vue.js</li><li>Utiliser PostgreSQL / Prisma pour la persistance<=
+/li><li>G=E9rer correctement les fuseaux horaires, y compris les changement=
+s heure d=92=E9t=E9 / heure d=92hiver</li><li>Fournir les migrations n=E9ce=
+ssaires</li><li>Ajouter les tests qui te semblent pertinents</li><li>Histor=
+ique Git</li></ul>
+<p class=3D"x_gmail-isSelectedEnd">L=92ensemble du back-end doit pouvoir =
+=EAtre lanc=E9 simplement avec :</p>
+<pre dir=3D"ltr"><code dir=3D"ltr">docker compose up</code></pre>
+<p class=3D"x_gmail-isSelectedEnd">Pour le reste =97 mod=E8le de donn=E9es,=
+ architecture, endpoints, validations, UX, gestion des dates, contraintes e=
+n base, organisation du frontend, etc. =97
+<strong>les choix sont volontairement laiss=E9s libres</strong>.</p>
+<p class=3D"x_gmail-isSelectedEnd">Ajoute simplement un petit README expliq=
+uant comment lancer le projet et, si n=E9cessaire, les principaux choix que=
+ tu as faits.</p>
+<p class=3D"x_gmail-isSelectedEnd">Une fois le test termin=E9, on prendra =
+=E9galement un moment ensemble pour parcourir ton impl=E9mentation et discu=
+ter de tes choix.</p>
+<p class=3D"x_gmail-isSelectedEnd">Bon courage et =E0 bient=F4t,</p>
+<p>Kevin</p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_AM4P195MB311159A5A29D83D9B8949B02EDDB2AM4P195MB3111EURP_--

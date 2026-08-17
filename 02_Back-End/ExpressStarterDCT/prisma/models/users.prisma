@@ -1,0 +1,53 @@
+model User {
+  id                  Int       @id @default(autoincrement())
+  email               String    @db.VarChar(254)
+  password            String    @db.VarChar(255)
+  role                UserRole
+  createdAt           DateTime  @default(now()) @db.Timestamptz(3)
+  clientProfile       ClientProfile?
+  professionalProfile ProfessionalProfile?
+  sessions            Session[]
+  authoredProposals   AppointmentChangeProposal[] @relation("ProposalAuthor")
+  receivedProposals   AppointmentChangeProposal[] @relation("ProposalRecipient")
+  historyEvents       AppointmentHistory[] @relation("HistoryActor")
+  notifications       InAppNotification[] @relation("NotificationRecipient")
+
+  @@unique([role, email], map: "user_role_email_unique")
+}
+
+model ClientProfile {
+  userId            Int      @id
+  firstName         String   @db.VarChar(100)
+  lastName          String   @db.VarChar(100)
+  phone             String   @db.VarChar(30)
+  preferredTimezone String   @db.VarChar(64)
+  user               User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments       Appointment[] @relation("ClientAppointments")
+}
+
+model ProfessionalProfile {
+  userId               Int      @id
+  firstName            String   @db.VarChar(100)
+  lastName             String   @db.VarChar(100)
+  phone                String   @db.VarChar(30)
+  businessName         String   @db.VarChar(150)
+  timezone             String   @db.VarChar(64)
+  calendarVersion      Int      @default(0)
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weeklyAvailabilities WeeklyAvailability[]
+  unavailabilities     Unavailability[]
+  appointments         Appointment[] @relation("ProfessionalAppointments")
+
+  @@unique([businessName], map: "professional_business_name_unique")
+}
+
+model Session {
+  id        String   @id @db.VarChar(64)
+  userId    Int
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  expiresAt DateTime @db.Timestamptz(3)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}

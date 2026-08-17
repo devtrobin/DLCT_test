@@ -1,0 +1,31 @@
+model Appointment {
+  id                       Int                  @id @default(autoincrement())
+  professionalUserId       Int?
+  clientUserId             Int?
+  publicCode               String?              @db.VarChar(64)
+  clientFirstName          String?              @db.VarChar(100)
+  clientLastName           String?              @db.VarChar(100)
+  clientPhone              String?              @db.VarChar(30)
+  clientEmail              String?              @db.VarChar(254)
+  clientAnonymized         Boolean              @default(false)
+  professionalBusinessName String?              @db.VarChar(150)
+  professionalAnonymized   Boolean              @default(false)
+  professionalTimezone     String               @db.VarChar(64)
+  startAt                  DateTime             @db.Timestamptz(3)
+  endAt                    DateTime             @db.Timestamptz(3)
+  status                   AppointmentStatus    @default(CONFIRMED)
+  cancellationCause        CancellationCause?
+  cancellationReason       String?              @db.VarChar(500)
+  canceledAt               DateTime?            @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt                DateTime             @updatedAt @db.Timestamptz(3)
+  professional             ProfessionalProfile? @relation("ProfessionalAppointments", fields: [professionalUserId], references: [userId], onDelete: SetNull)
+  client                   ClientProfile?       @relation("ClientAppointments", fields: [clientUserId], references: [userId], onDelete: SetNull)
+  proposals                AppointmentChangeProposal[]
+  history                  AppointmentHistory[]
+  notifications            InAppNotification[]
+
+  @@index([professionalUserId, startAt])
+  @@index([clientUserId, startAt])
+  @@unique([publicCode], map: "appointment_public_code_unique")
+}

@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_DB: delicity
+          POSTGRES_PASSWORD: delicity
+          POSTGRES_USER: delicity
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U delicity -d delicity"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      APP_NAME: delicity
+      CORS_ORIGINS: http://localhost:5173
+      DATABASE_URL: >-
+        postgresql://delicity:delicity@localhost:5432/delicity?schema=public
+      NODE_ENV: test
+      PORT: 3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install backend dependencies
+        working-directory: 02_Back-End/ExpressStarterDCT
+        run: bun install --frozen-lockfile
+
+      - name: Validate database and backend
+        working-directory: 02_Back-End/ExpressStarterDCT
+        run: |
+          bunx prisma validate
+          bunx prisma generate
+          bunx prisma migrate deploy
+          bun run typecheck
+          bun run check:file-limits
+          bun test
+
+      - name: Install frontend dependencies
+        working-directory: 03_Front-End
+        run: bun install --frozen-lockfile
+
+      - name: Build frontend
+        working-directory: 03_Front-End
+        run: bun run build
+
+      - name: Validate Compose
+        run: docker compose config --quiet

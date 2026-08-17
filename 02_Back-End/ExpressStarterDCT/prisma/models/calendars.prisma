@@ -1,0 +1,22 @@
+model WeeklyAvailability {
+  id                 Int                 @id @default(autoincrement())
+  professionalUserId Int
+  weekday            Int                 @db.SmallInt
+  startMinute        Int                 @db.SmallInt
+  endMinute          Int                 @db.SmallInt
+  professional       ProfessionalProfile @relation(fields: [professionalUserId], references: [userId], onDelete: Cascade)
+
+  @@index([professionalUserId, weekday])
+}
+
+model Unavailability {
+  id                 Int                 @id @default(autoincrement())
+  professionalUserId Int
+  startAt            DateTime            @db.Timestamptz(3)
+  endAt              DateTime            @db.Timestamptz(3)
+  reason             String?             @db.VarChar(500)
+  createdAt          DateTime            @default(now()) @db.Timestamptz(3)
+  professional       ProfessionalProfile @relation(fields: [professionalUserId], references: [userId], onDelete: Cascade)
+
+  @@index([professionalUserId, startAt])
+}

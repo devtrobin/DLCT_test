@@ -1,0 +1,16 @@
+model InAppNotification {
+  id              Int          @id @default(autoincrement())
+  recipientUserId Int
+  appointmentId   Int?
+  type            NotificationType
+  payload         Json
+  eventKey        String       @db.VarChar(128)
+  readAt          DateTime?    @db.Timestamptz(3)
+  createdAt       DateTime     @default(now()) @db.Timestamptz(3)
+  recipient       User         @relation("NotificationRecipient", fields: [recipientUserId], references: [id], onDelete: Cascade)
+  appointment     Appointment? @relation(fields: [appointmentId], references: [id], onDelete: SetNull)
+
+  @@unique([recipientUserId, eventKey], map: "notification_recipient_event_unique")
+  @@index([recipientUserId, readAt, createdAt, id])
+  @@index([recipientUserId, createdAt, id])
+}

@@ -1,0 +1,10 @@
+.git
+.env
+.DS_Store
+**/.DS_Store
+**/node_modules
+**/dist
+**/coverage
+Documentation
+03_Front-End
+01_DB
