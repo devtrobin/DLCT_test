@@ -18,3 +18,6 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
   par code public.
 - Notifications internes : production transactionnelle des événements,
   liste paginée, compteur non lu et actions de lecture unitaire ou globale.
+- Interface Vue : authentification, inscription, récupération de mot de passe,
+  recherche et réservation, agendas, calendriers, compte, notifications et
+  accès public, avec Bootstrap, Pinia, Vue Router, Vue I18n et Luxon.

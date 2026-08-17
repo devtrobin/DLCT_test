@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vue-tsc --noEmit && vite build",
+    "check:file-limits": "bun run scripts/check-file-limits.ts",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {

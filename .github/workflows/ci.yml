@@ -54,7 +54,9 @@ jobs:
 
       - name: Build frontend
         working-directory: 03_Front-End
-        run: bun run build
+        run: |
+          bun run check:file-limits
+          bun run build
 
       - name: Validate Compose
         run: docker compose config --quiet

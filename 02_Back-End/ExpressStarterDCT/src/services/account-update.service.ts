@@ -58,6 +58,10 @@ const updateProfessionalTimezone = async (
   if (input.expectedCalendarVersion === undefined) {
     throw new AppError(400, 'CALENDAR_VERSION_REQUIRED')
   }
+  const profile = await prisma.professionalProfile.findUniqueOrThrow({
+    where: { userId },
+  })
+  if (profile.timezone === input.timezone) return
   const future = await prisma.appointment.count({
     where: {
       professionalUserId: userId,

@@ -68,4 +68,19 @@ await prisma.professionalProfile.upsert({
   where: { userId: professional.id },
 })
 
+const existingSchedule = await prisma.weeklyAvailability.count({
+  where: { professionalUserId: professional.id },
+})
+
+if (!existingSchedule) {
+  await prisma.weeklyAvailability.createMany({
+    data: Array.from({ length: 5 }, (_, weekday) => ({
+      endMinute: 18 * 60,
+      professionalUserId: professional.id,
+      startMinute: 9 * 60,
+      weekday: weekday + 1,
+    })),
+  })
+}
+
 await prisma.$disconnect()

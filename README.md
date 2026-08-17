@@ -1,21 +1,22 @@
 # Test technique Delicity
 
-> Statut : socle technique initialisé, fonctionnalités métier à développer.
+> Statut : démonstration fonctionnelle prête à être exécutée.
 
-Ce projet accueillera une démonstration de prise de rendez-vous composée d'une
+Ce projet contient une démonstration de prise de rendez-vous composée d'une
 API Bun/Express, d'une interface Vue, d'une base PostgreSQL et d'un job de
 migrations.
 
-## État actuel
+## Fonctionnalités
 
-- le projet utilise un dépôt Git unique à la racine ;
-- le `.git` imbriqué du starter a été retiré après conservation de son SHA ;
-- les quatre images Docker sont définies dans `compose.yaml` ;
-- le frontend Vue minimal et l'infrastructure backend se construisent ;
-- les migrations installent le modèle et les contraintes PostgreSQL ;
-- `/health`, `/metrics` et la page d'accueil répondent ;
-- les routes d'authentification et les fonctionnalités métier restent à
-  implémenter selon les spécifications.
+- inscription et connexion client ou restaurateur avec sessions PostgreSQL ;
+- recherche de restaurateurs et consultation des créneaux sur sept jours ;
+- horaires hebdomadaires et indisponibilités exceptionnelles ;
+- réservation client et création manuelle par un restaurateur ;
+- agenda, historique, annulation et propositions de nouveau créneau ;
+- consultation et gestion d'un rendez-vous par code public ;
+- notifications internes et gestion du compte ;
+- contraintes PostgreSQL contre les chevauchements concurrents ;
+- tests d'intégration backend et contrôles automatiques de structure.
 
 Le clone backend correspond au commit :
 
@@ -82,6 +83,16 @@ Le seed de démonstration est manuel et idempotent :
 ```sh
 docker compose run --rm scripts bun run seed
 ```
+
+Il crée les comptes suivants :
+
+| Rôle | Adresse | Mot de passe |
+|---|---|---|
+| Client | `client@example.test` | `Password` |
+| Restaurateur | `restaurant@example.test` | `Password` |
+
+Le restaurateur de démonstration possède des horaires du lundi au vendredi,
+de 09:00 à 18:00 dans le fuseau `Europe/Paris`.
 
 Les variables disponibles sont documentées dans `.env.example`. Le fichier
 `.env` local est ignoré par Git.
