@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import AppAlert from '../components/AppAlert.vue'
+import TimezoneSelect from '../components/TimezoneSelect.vue'
 import { ApiError } from '../api/http'
 import { useAuthStore } from '../stores/auth.store'
 import type { UserRole } from '../types/api'
@@ -73,8 +74,7 @@ const submit = async () => {
                  minlength="8" placeholder="Mot de passe" required>
         </div>
         <div class="col-md-6">
-          <input v-model="form.timezone" class="form-control"
-                 placeholder="Fuseau IANA" required>
+          <TimezoneSelect v-model="form.timezone" />
         </div>
         <div class="col-12 d-flex gap-2">
           <button class="btn btn-primary">S'inscrire</button>

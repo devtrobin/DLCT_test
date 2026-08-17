@@ -107,10 +107,11 @@ seed.
 
 1. Depuis la page d'accueil, sélectionner **Créer un compte**.
 2. Choisir le rôle **Client** ou **Restaurateur**.
-3. Renseigner l'identité, les coordonnées, le mot de passe et le fuseau IANA.
-4. Pour un restaurateur, renseigner également un nom commercial unique.
-5. Valider avec **S'inscrire**.
-6. La session est créée et le tableau de bord correspondant au rôle s'ouvre.
+3. Renseigner l'identité et les coordonnées.
+4. Sélectionner le fuseau IANA dans la liste.
+5. Pour un restaurateur, renseigner également un nom commercial unique.
+6. Valider avec **S'inscrire**.
+7. La session est créée et le tableau de bord correspondant au rôle s'ouvre.
 
 ### Se connecter et se déconnecter
 
@@ -226,7 +227,7 @@ entre-temps, la proposition ne remplace pas le rendez-vous existant.
 ### Modifier ou supprimer son compte
 
 1. Ouvrir **Paramètres** dans la barre de navigation.
-2. Modifier le profil ou le fuseau, puis sélectionner
+2. Modifier le profil ou sélectionner le fuseau, puis choisir
    **Enregistrer le profil**.
 3. Pour changer le mot de passe, saisir l'ancien et le nouveau mot de passe,
    puis sélectionner **Modifier le mot de passe**.

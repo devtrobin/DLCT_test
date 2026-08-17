@@ -13,20 +13,20 @@ const signOut = async () => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+  <nav class="navbar navbar-dark bg-dark" data-bs-theme="dark">
     <div class="container">
-      <RouterLink class="navbar-brand" to="/">
+      <RouterLink class="navbar-brand text-white" to="/">
         Delicity
       </RouterLink>
       <div class="d-flex align-items-center gap-3">
         <template v-if="auth.user">
-          <RouterLink class="nav-link" to="/dashboard">
+          <RouterLink class="nav-link text-white" to="/dashboard">
             Tableau de bord
           </RouterLink>
-          <RouterLink class="nav-link" to="/notifications">
+          <RouterLink class="nav-link text-white" to="/notifications">
             Notifications
           </RouterLink>
-          <RouterLink class="nav-link" to="/settings">
+          <RouterLink class="nav-link text-white" to="/settings">
             Paramètres
           </RouterLink>
           <button class="btn btn-outline-light btn-sm" @click="signOut">
@@ -37,3 +37,10 @@ const signOut = async () => {
     </div>
   </nav>
 </template>
+
+<style scoped>
+.nav-link:hover,
+.nav-link.router-link-active {
+  color: var(--bs-warning) !important;
+}
+</style>

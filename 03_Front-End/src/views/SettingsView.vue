@@ -8,6 +8,7 @@ import {
   updatePassword,
 } from '../api/account.api'
 import AppAlert from '../components/AppAlert.vue'
+import TimezoneSelect from '../components/TimezoneSelect.vue'
 import { useAuthStore } from '../stores/auth.store'
 
 const auth = useAuthStore()
@@ -68,7 +69,7 @@ const removeAccount = async () => {
       <input v-model="profile.lastName" class="form-control" required>
       <input v-model="profile.email" class="form-control" type="email" required>
       <input v-model="profile.phone" class="form-control" required>
-      <input v-model="profile.timezone" class="form-control" required>
+      <TimezoneSelect v-model="profile.timezone" />
       <button class="btn btn-primary">Enregistrer le profil</button>
     </form>
     <form class="col-lg-6 vstack gap-3" @submit.prevent="savePassword">
