@@ -2,6 +2,7 @@ import { prisma } from '../database/prisma'
 import { AppError } from '../errors/app-error'
 import { getVisibleAppointment } from './appointment-query.service'
 import { projectAppointment } from './appointment-projector'
+import { writeNotification } from './notification-writer'
 
 type User = { id: number; role: 'CLIENT' | 'PROFESSIONAL' }
 
@@ -44,6 +45,22 @@ export const cancelAppointment = async (
         eventType: 'APPOINTMENT_CANCELED',
         payload: { cause: user.role, reason: reason ?? null },
       },
+    })
+    const recipientUserId = user.role === 'CLIENT'
+      ? appointment.professionalUserId : appointment.clientUserId
+    await writeNotification(transaction, {
+      appointmentId,
+      eventKey: `appointment:${appointmentId}:canceled`,
+      payload: {
+        actor: user.role,
+        range: {
+          endAt: appointment.endAt.toISOString(),
+          startAt: appointment.startAt.toISOString(),
+        },
+        reason: reason ?? null,
+      },
+      recipientUserId,
+      type: 'APPOINTMENT_CANCELED',
     })
     if (appointment.professionalUserId) {
       await transaction.professionalProfile.update({

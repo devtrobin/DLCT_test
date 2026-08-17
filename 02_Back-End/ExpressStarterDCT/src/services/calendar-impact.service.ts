@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto'
 
-import { prisma } from '../database/prisma'
 import { AppError } from '../errors/app-error'
 import type { Prisma } from '../generated/client/client.js'
 import { rangeView } from './time.service'
+import { writeNotification } from './notification-writer'
 
 type ImpactAppointment = {
   id: number
@@ -55,12 +55,15 @@ export const requireImpactConfirmation = (
 }
 
 export const cancelAppointments = async (
-  database: Prisma.TransactionClient | typeof prisma,
+  database: Prisma.TransactionClient,
   ids: number[],
   cause: 'SCHEDULE_CHANGED' | 'UNAVAILABILITY',
   reason?: string,
 ) => {
   if (!ids.length) return
+  const appointments = await database.appointment.findMany({
+    where: { id: { in: ids } },
+  })
   await database.appointmentChangeProposal.updateMany({
     data: { decidedAt: new Date(), status: 'CANCELED' },
     where: { appointmentId: { in: ids }, status: 'PENDING' },
@@ -74,4 +77,18 @@ export const cancelAppointments = async (
     },
     where: { id: { in: ids } },
   })
+  for (const appointment of appointments) {
+    await writeNotification(database, {
+      appointmentId: appointment.id,
+      eventKey: `appointment:${appointment.id}:${cause.toLowerCase()}`,
+      payload: {
+        cause,
+        range: rangeView(appointment.startAt, appointment.endAt),
+        reason: reason ?? null,
+      },
+      recipientUserId: appointment.clientUserId,
+      type: cause === 'SCHEDULE_CHANGED'
+        ? 'SCHEDULE_CANCELLATION' : 'UNAVAILABILITY_CANCELLATION',
+    })
+  }
 }

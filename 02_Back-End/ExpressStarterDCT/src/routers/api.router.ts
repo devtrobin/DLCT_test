@@ -32,6 +32,7 @@ import {
   rejectProposalController,
 } from '../controllers/proposal-transition.controller'
 import { requireRole, requireSession } from '../middleware/session.middleware'
+import { notificationRouter } from './notification.router'
 
 export const apiRouter = Router()
 
@@ -41,6 +42,8 @@ apiRouter.patch('/account', updateAccountController)
 apiRouter.patch('/account/password', updatePasswordController)
 apiRouter.post('/account/deletion-preview', deletionPreviewController)
 apiRouter.delete('/account', deleteAccountController)
+
+apiRouter.use('/notifications', notificationRouter)
 
 apiRouter.post(
   '/appointments',

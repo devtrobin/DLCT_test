@@ -9,6 +9,7 @@ import {
 import { projectProposal } from './proposal-projector'
 import { getProposal } from './proposal-query.service'
 import { assertSlotAvailable } from './slot-validation.service'
+import { writeNotification } from './notification-writer'
 import type { AppointmentPrincipal } from '../types/principal.types'
 
 export const acceptProposal = async (
@@ -66,6 +67,21 @@ export const acceptProposal = async (
         eventType: force ? 'CHANGE_FORCED' : 'CHANGE_ACCEPTED',
         payload: { proposalId: proposal.id },
       },
+    })
+    await writeNotification(transaction, {
+      appointmentId: appointment.id,
+      eventKey: `proposal:${proposal.id}:${force ? 'forced' : 'accepted'}`,
+      payload: {
+        actor: principal.party,
+        newRange: {
+          endAt: proposal.proposedEndAt.toISOString(),
+          startAt: proposal.proposedStartAt.toISOString(),
+        },
+        proposalId: proposal.id,
+      },
+      recipientUserId: force
+        ? appointment.clientUserId : proposal.authorUserId,
+      type: force ? 'CHANGE_FORCED' : 'CHANGE_ACCEPTED',
     })
     await transaction.professionalProfile.update({
       data: { calendarVersion: { increment: 1 } },

@@ -4,6 +4,7 @@ import { prisma } from '../database/prisma'
 import { AppError } from '../errors/app-error'
 import { getAppointmentRecord } from './appointment-query.service'
 import { projectAppointment } from './appointment-projector'
+import { writeNotification } from './notification-writer'
 
 type BookingData = {
   clientEmail: string
@@ -41,6 +42,30 @@ export const writeBooking = async (
             ? 'APPOINTMENT_CREATED' : 'MANUAL_APPOINTMENT_CREATED',
           payload: { source },
         },
+      })
+      const type = source === 'CLIENT'
+        ? 'APPOINTMENT_CREATED' : 'MANUAL_APPOINTMENT_CREATED'
+      const payload = {
+        professionalBusinessName: data.professionalBusinessName,
+        professionalDeleted: false,
+        range: {
+          endAt: data.endAt.toISOString(),
+          startAt: data.startAt.toISOString(),
+        },
+      }
+      await writeNotification(transaction, {
+        appointmentId: created.id,
+        eventKey: `appointment:${created.id}:created:professional`,
+        payload,
+        recipientUserId: data.professionalUserId,
+        type,
+      })
+      await writeNotification(transaction, {
+        appointmentId: created.id,
+        eventKey: `appointment:${created.id}:created:client`,
+        payload,
+        recipientUserId: data.clientUserId,
+        type,
       })
       await transaction.professionalProfile.update({
         data: { calendarVersion: { increment: 1 } },

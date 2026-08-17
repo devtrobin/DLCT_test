@@ -3,6 +3,7 @@ import { AppError } from '../errors/app-error'
 import type { AppointmentRecord } from './appointment-query.service'
 import { projectProposal } from './proposal-projector'
 import { getProposal } from './proposal-query.service'
+import { writeNotification } from './notification-writer'
 import type { AppointmentPrincipal } from '../types/principal.types'
 
 export const closeProposal = async (
@@ -43,6 +44,18 @@ export const closeProposal = async (
           ? { proposalId, reason: reason ?? null }
           : { cause: 'AUTHOR', proposalId },
       },
+    })
+    await writeNotification(transaction, {
+      appointmentId: appointment.id,
+      eventKey: `proposal:${proposal.id}:${action.toLowerCase()}`,
+      payload: {
+        actor: principal.party,
+        proposalId: proposal.id,
+        reason: reason ?? null,
+      },
+      recipientUserId: action === 'REJECTED'
+        ? proposal.authorUserId : proposal.recipientUserId,
+      type: action === 'REJECTED' ? 'CHANGE_REJECTED' : 'CHANGE_CANCELED',
     })
     return result
   })

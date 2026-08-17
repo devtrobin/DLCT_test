@@ -16,3 +16,5 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
 - Modification de rendez-vous : propositions bilatérales, acceptation,
   refus, retrait, forçage restaurateur, détection des conflits et accès limité
   par code public.
+- Notifications internes : production transactionnelle des événements,
+  liste paginée, compteur non lu et actions de lecture unitaire ou globale.

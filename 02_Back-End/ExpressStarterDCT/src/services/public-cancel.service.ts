@@ -4,6 +4,7 @@ import {
   getPublicAppointmentRecord,
   projectPublicAppointment,
 } from './public-appointment.service'
+import { writeNotification } from './notification-writer'
 
 export const cancelPublicAppointment = async (
   publicCode: string,
@@ -37,6 +38,20 @@ export const cancelPublicAppointment = async (
         eventType: 'APPOINTMENT_CANCELED',
         payload: { cause: 'CLIENT', reason: reason ?? null },
       },
+    })
+    await writeNotification(transaction, {
+      appointmentId: appointment.id,
+      eventKey: `appointment:${appointment.id}:canceled`,
+      payload: {
+        actor: 'CLIENT',
+        range: {
+          endAt: appointment.endAt.toISOString(),
+          startAt: appointment.startAt.toISOString(),
+        },
+        reason: reason ?? null,
+      },
+      recipientUserId: appointment.professionalUserId,
+      type: 'APPOINTMENT_CANCELED',
     })
     if (appointment.professionalUserId) {
       await transaction.professionalProfile.update({

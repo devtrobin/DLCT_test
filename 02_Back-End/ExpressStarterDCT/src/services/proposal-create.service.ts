@@ -4,6 +4,7 @@ import { prisma } from '../database/prisma'
 import { AppError } from '../errors/app-error'
 import type { AppointmentRecord } from './appointment-query.service'
 import { projectProposal } from './proposal-projector'
+import { writeNotification } from './notification-writer'
 import { assertSlotAvailable } from './slot-validation.service'
 import type { AppointmentPrincipal } from '../types/principal.types'
 
@@ -69,6 +70,20 @@ export const createProposal = async (
           },
         },
       },
+    })
+    await writeNotification(transaction, {
+      appointmentId: appointment.id,
+      eventKey: `proposal:${created.id}:created`,
+      payload: {
+        actor: principal.party,
+        proposalId: created.id,
+        proposedRange: {
+          endAt: proposedEndAt.toISOString(),
+          startAt: proposedStartAt.toISOString(),
+        },
+      },
+      recipientUserId: created.recipientUserId,
+      type: 'CHANGE_PROPOSED',
     })
     return created
   }, { isolationLevel: 'Serializable' })
