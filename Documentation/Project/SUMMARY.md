@@ -57,10 +57,5 @@ Les exigences demandées dans le sujet sont signalées par **[Imposé]**. Les ch
 ## Sources du projet
 
 - état et démarrage du dépôt : [`../../README.md`](../../README.md) ;
-- contexte général : [`../Context/Context.md`](../Context/Context.md) ;
-- synthèse du sujet reçu : [`../Context/Mail/EMAIL_TOPIC.md`](../Context/Mail/EMAIL_TOPIC.md) ;
-- courriel original du test : [`../Context/Mail/[Delicity] Test technique.eml`](../Context/Mail/%5BDelicity%5D%20Test%20technique.eml) ;
-- résumé du dernier échange : [`../Context/Meeting/RESUME_LAST_MEETING.md`](../Context/Meeting/RESUME_LAST_MEETING.md) ;
-- historique des contacts : [`../Context/HISTORIQUE.md`](../Context/HISTORIQUE.md) ;
 - clone backend : [`../../02_Back-End/ExpressStarterDCT/README.md`](../../02_Back-End/ExpressStarterDCT/README.md) ;
 - instructions IA du clone : [`../../02_Back-End/ExpressStarterDCT/CLAUDE.md`](../../02_Back-End/ExpressStarterDCT/CLAUDE.md).

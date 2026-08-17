@@ -103,10 +103,3 @@ les migrations Prisma une seule fois au démarrage, puis s'arrête normalement.
   [`BACKEND_MODULES.md`](BACKEND_MODULES.md) ;
 - rôles et ordre de démarrage des quatre images :
   [`DOCKER_ARCHITECTURE.md`](DOCKER_ARCHITECTURE.md).
-
-## 8. Sources du cadrage
-
-- contexte général : [`../Context/Context.md`](../Context/Context.md) ;
-- sujet synthétisé : [`../Context/Mail/EMAIL_TOPIC.md`](../Context/Mail/EMAIL_TOPIC.md) ;
-- courriel original : [`../Context/Mail/[Delicity] Test technique.eml`](../Context/Mail/%5BDelicity%5D%20Test%20technique.eml) ;
-- notes de l'entretien : [`../Context/Meeting/RESUME_LAST_MEETING.md`](../Context/Meeting/RESUME_LAST_MEETING.md).

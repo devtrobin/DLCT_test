@@ -113,9 +113,3 @@ Pour ce projet, le starter actuel conduit à utiliser Bun, Express 5, Prisma
 Tailwind CSS et GitHub Actions assure la CI. Luxon est conservé comme outil
 temporel. Redis, BullMQ, JWT, OAuth Google, bcrypt, S3, Ionic et Capacitor
 restent écartés sans besoin fonctionnel.
-
-## Sources
-
-- Sujet du test : [`../Context/Mail/EMAIL_TOPIC.md`](../Context/Mail/EMAIL_TOPIC.md)
-- Contexte général : [`../Context/Context.md`](../Context/Context.md)
-- Annonce du poste : [`../Context/Linkdin/POST_LINKDIN.md`](../Context/Linkdin/POST_LINKDIN.md)

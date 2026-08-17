@@ -62,8 +62,7 @@ Redis, BullMQ et S3 ont été retirés du code cible.
 - [contrat API](Documentation/Project/API.md) ;
 - [modèle de données](Documentation/Project/DATA_MODEL.md) ;
 - [architecture Docker](Documentation/Project/DOCKER_ARCHITECTURE.md) ;
-- [règles de développement](Documentation/Project/DEV_RULES.md) ;
-- [contexte du recrutement](Documentation/Context/Context.md).
+- [règles de développement](Documentation/Project/DEV_RULES.md).
 
 ## Démarrage
 

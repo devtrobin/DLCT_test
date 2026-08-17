@@ -818,11 +818,6 @@ Une contribution est terminée uniquement lorsque :
 
 ## 19. Sources techniques
 
-- contexte général : [`../Context/Context.md`](../Context/Context.md) ;
-- sujet reçu :
-  [`../Context/Mail/EMAIL_TOPIC.md`](../Context/Mail/EMAIL_TOPIC.md) ;
-- stack de l'annonce :
-  [`../Context/Linkdin/POST_LINKDIN.md`](../Context/Linkdin/POST_LINKDIN.md) ;
 - conception du projet : [`TECHNICAL_DESIGN.md`](TECHNICAL_DESIGN.md) ;
 - contrat HTTP : [`API.md`](API.md) ;
 - modèle de données : [`DATA_MODEL.md`](DATA_MODEL.md) ;
