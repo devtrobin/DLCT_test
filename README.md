@@ -97,6 +97,16 @@ de 09:00 à 18:00 dans le fuseau `Europe/Paris`.
 Les variables disponibles sont documentées dans `.env.example`. Le fichier
 `.env` local est ignoré par Git.
 
+## Vérifications
+
+La CI applique les migrations sur une base PostgreSQL, génère le client
+Prisma, vérifie TypeScript et les limites de fichiers, puis lance les tests
+d'intégration backend et le build frontend.
+
+Les scénarios couvrent notamment les sessions, les calendriers, les
+réservations, les propositions, l'accès public, les notifications et les deux
+transitions saisonnières du fuseau `Europe/Paris`.
+
 ## Avertissement de démonstration
 
 Certaines décisions, notamment le stockage en clair et l'affichage du mot de

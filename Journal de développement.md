@@ -21,3 +21,6 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
 - Interface Vue : authentification, inscription, récupération de mot de passe,
   recherche et réservation, agendas, calendriers, compte, notifications et
   accès public, avec Bootstrap, Pinia, Vue Router, Vue I18n et Luxon.
+- Qualité : tests d'intégration des parcours principaux, tests des changements
+  d'heure été/hiver, CI, validation TypeScript et limites automatiques de 100
+  lignes par fichier et 80 caractères par ligne.
