@@ -21,6 +21,16 @@ import {
   createManualAppointmentController,
   listAppointmentsController,
 } from '../controllers/appointment.controller'
+import {
+  createProposalController,
+  proposalSlotsController,
+} from '../controllers/proposal.controller'
+import {
+  acceptProposalController,
+  cancelProposalController,
+  forceProposalController,
+  rejectProposalController,
+} from '../controllers/proposal-transition.controller'
 import { requireRole, requireSession } from '../middleware/session.middleware'
 
 export const apiRouter = Router()
@@ -40,6 +50,24 @@ apiRouter.post(
 apiRouter.get('/appointments', listAppointmentsController)
 apiRouter.get('/appointments/:id', appointmentDetailController)
 apiRouter.post('/appointments/:id/cancel', cancelAppointmentController)
+apiRouter.get('/appointments/:id/proposal-slots', proposalSlotsController)
+apiRouter.post('/appointments/:id/proposals', createProposalController)
+apiRouter.post(
+  '/appointments/:id/proposals/:proposalId/accept',
+  acceptProposalController,
+)
+apiRouter.post(
+  '/appointments/:id/proposals/:proposalId/reject',
+  rejectProposalController,
+)
+apiRouter.post(
+  '/appointments/:id/proposals/:proposalId/cancel',
+  cancelProposalController,
+)
+apiRouter.post(
+  '/appointments/:id/proposals/:proposalId/force',
+  forceProposalController,
+)
 
 apiRouter.use('/professional', requireRole('PROFESSIONAL'))
 apiRouter.post(

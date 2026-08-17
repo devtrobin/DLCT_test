@@ -1,16 +1,6 @@
 import type { AppointmentRecord } from './appointment-query.service'
+import { projectProposal } from './proposal-projector'
 import { rangeView } from './time.service'
-
-const proposalView = (proposal: AppointmentRecord['proposals'][number]) => ({
-  authorParty: proposal.authorParty,
-  createdAt: proposal.createdAt.toISOString(),
-  decidedAt: proposal.decidedAt?.toISOString() ?? null,
-  id: proposal.id,
-  proposedRange: rangeView(proposal.proposedStartAt, proposal.proposedEndAt),
-  recipientParty: proposal.recipientParty,
-  rejectionReason: proposal.rejectionReason,
-  status: proposal.status,
-})
 
 export const projectAppointment = (
   appointment: AppointmentRecord,
@@ -39,7 +29,7 @@ export const projectAppointment = (
   })),
   id: appointment.id,
   pendingProposal: appointment.proposals[0]
-    ? proposalView(appointment.proposals[0]) : null,
+    ? projectProposal(appointment.proposals[0]) : null,
   professional: {
     businessName: appointment.professionalBusinessName,
     deleted: appointment.professionalAnonymized,

@@ -76,9 +76,11 @@ const anonymizeAppointments = async (
     clientFirstName: null,
     clientLastName: null,
     clientPhone: null,
+    publicCode: null,
   } : {
     professionalAnonymized: true,
     professionalBusinessName: null,
+    publicCode: null,
   }
   await transaction.appointment.updateMany({
     data,

@@ -13,3 +13,6 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
   de créneaux sur sept jours avec Luxon.
 - Rendez-vous : réservation client, création manuelle restaurateur, listes,
   détail, historique initial, code public et annulation transactionnelle.
+- Modification de rendez-vous : propositions bilatérales, acceptation,
+  refus, retrait, forçage restaurateur, détection des conflits et accès limité
+  par code public.
