@@ -43,8 +43,8 @@ elle n'est ni un cron ni un worker métier.
 ## Choix structurants
 
 - Bun, Express 5, TypeScript ESM, Prisma 7, PostgreSQL et Zod ;
-- modèle Prisma `User` du starter conservé et adapté, complété par les profils
-  et agrégats métier utiles ;
+- modèle Prisma `User` du starter conservé et adapté, complété par les
+  profils et agrégats métier utiles ;
 - Vue 3, Pinia, Bootstrap et Vue I18n ;
 - Luxon, déjà présent dans le starter, pour les dates et fuseaux ;
 - sessions opaques conservées dans PostgreSQL, sans JWT ;
@@ -96,6 +96,147 @@ de 09:00 à 18:00 dans le fuseau `Europe/Paris`.
 
 Les variables disponibles sont documentées dans `.env.example`. Le fichier
 `.env` local est ignoré par Git.
+
+## Parcours fonctionnels complets
+
+Les parcours suivants commencent sur `http://localhost:5173` après le
+démarrage de Compose et, pour utiliser les comptes fournis, l'exécution du
+seed.
+
+### Créer un compte
+
+1. Depuis la page d'accueil, sélectionner **Créer un compte**.
+2. Choisir le rôle **Client** ou **Restaurateur**.
+3. Renseigner l'identité, les coordonnées, le mot de passe et le fuseau IANA.
+4. Pour un restaurateur, renseigner également un nom commercial unique.
+5. Valider avec **S'inscrire**.
+6. La session est créée et le tableau de bord correspondant au rôle s'ouvre.
+
+### Se connecter et se déconnecter
+
+1. Sur la page d'accueil, choisir le rôle du compte.
+2. Saisir l'adresse électronique et le mot de passe.
+3. Cocher éventuellement **Rester connecté** pour prolonger la session.
+4. Sélectionner **Se connecter** pour ouvrir le tableau de bord.
+5. Utiliser **Déconnexion** dans la barre de navigation pour fermer la
+   session courante.
+
+### Simuler la récupération d'un mot de passe
+
+1. Sélectionner **Mot de passe oublié** sur la page de connexion.
+2. Choisir le rôle et saisir l'adresse électronique du compte.
+3. Sélectionner **Réinitialiser**.
+4. Pour cette démonstration uniquement, le mot de passe enregistré est
+   affiché directement. Aucun courriel réel n'est envoyé.
+
+### Réserver un rendez-vous comme client
+
+1. Se connecter avec un compte client.
+2. Depuis le tableau de bord, sélectionner **Réserver**.
+3. Rechercher un restaurateur par son nom commercial.
+4. Sélectionner le restaurateur dans les résultats.
+5. Parcourir les blocs de sept jours avec **Précédent** et **Suivant**.
+6. Sélectionner un créneau disponible dans le fuseau du client.
+7. Le rendez-vous d'une heure est créé et sa fiche détaillée s'ouvre.
+8. Copier le code public affiché si un accès ultérieur sans connexion est
+   souhaité.
+
+Le backend revérifie le créneau au moment de la réservation. Si un autre
+client vient de le prendre, l'interface signale le conflit et recharge les
+créneaux disponibles.
+
+### Consulter ou annuler un rendez-vous connecté
+
+1. Ouvrir le **Tableau de bord**.
+2. Sélectionner la carte du rendez-vous à consulter.
+3. Vérifier son état, sa date, son heure et son code public.
+4. Sélectionner **Annuler le rendez-vous** puis confirmer.
+5. Un restaurateur doit auparavant saisir le motif communiqué au client.
+
+### Consulter un rendez-vous sans compte
+
+1. Sur la page d'accueil, saisir le code dans **Retrouver une réservation**.
+2. Sélectionner **Consulter**.
+3. La page publique affiche uniquement le rendez-vous correspondant.
+4. Depuis cette page, le client peut annuler le rendez-vous, proposer une
+   autre date ou répondre à une proposition en attente.
+
+Le code est conservé dans la session du navigateur et n'est pas placé dans
+l'URL.
+
+### Définir les disponibilités habituelles
+
+1. Se connecter avec un compte restaurateur.
+2. Depuis le tableau de bord, sélectionner **Gérer le calendrier**.
+3. Ajouter une ou plusieurs plages, puis choisir le jour et les heures.
+4. Retirer les plages devenues inutiles.
+5. Sélectionner **Enregistrer**.
+6. Si des rendez-vous sont affectés, examiner l'avertissement et confirmer ou
+   abandonner la modification.
+
+Après confirmation, les rendez-vous devenus impossibles sont annulés et les
+clients concernés reçoivent une notification interne.
+
+### Gérer les indisponibilités exceptionnelles
+
+1. Ouvrir **Gérer le calendrier**, puis **Indisponibilités**.
+2. Saisir le début, la fin et, si nécessaire, un motif.
+3. Sélectionner **Ajouter**.
+4. Si des rendez-vous sont concernés, saisir un motif, puis confirmer leur
+   annulation.
+5. Pour supprimer une indisponibilité, sélectionner **Retirer** sur la ligne
+   correspondante.
+
+Une indisponibilité peut couvrir une partie de journée ou plusieurs jours.
+
+### Créer manuellement un rendez-vous comme restaurateur
+
+1. Se connecter avec un compte restaurateur.
+2. Depuis le tableau de bord, sélectionner **Nouveau rendez-vous**.
+3. Renseigner le nom, le prénom, l'adresse électronique et le téléphone du
+   client.
+4. Choisir la date et l'heure du rendez-vous.
+5. Sélectionner **Créer**.
+6. La disponibilité est contrôlée et la fiche du rendez-vous s'ouvre avec son
+   code public.
+
+### Proposer un nouveau créneau
+
+1. Ouvrir la fiche d'un rendez-vous confirmé, avec une session ou son code
+   public.
+2. Choisir une nouvelle date et une nouvelle heure.
+3. Sélectionner **Proposer ce créneau** ou **Proposer**.
+4. La proposition apparaît en attente chez les deux parties.
+5. Son destinataire peut sélectionner **Accepter** ou **Refuser**.
+6. Son auteur peut sélectionner **Retirer**.
+7. Lorsqu'il a obtenu l'accord du client par un autre moyen, le restaurateur
+   peut sélectionner **Forcer après accord du client** sur sa proposition.
+
+Le créneau est revérifié lors de l'acceptation. Si celui-ci a été réservé
+entre-temps, la proposition ne remplace pas le rendez-vous existant.
+
+### Consulter les notifications internes
+
+1. Se connecter puis ouvrir **Notifications** dans la barre de navigation.
+2. Consulter les événements liés aux réservations, annulations et
+   propositions.
+3. Sélectionner une notification pour la marquer comme lue.
+4. Utiliser **Tout marquer comme lu** pour traiter la liste entière.
+
+### Modifier ou supprimer son compte
+
+1. Ouvrir **Paramètres** dans la barre de navigation.
+2. Modifier le profil ou le fuseau, puis sélectionner
+   **Enregistrer le profil**.
+3. Pour changer le mot de passe, saisir l'ancien et le nouveau mot de passe,
+   puis sélectionner **Modifier le mot de passe**.
+4. Pour supprimer le compte, sélectionner
+   **Supprimer définitivement mon compte**.
+5. Ressaisir le mot de passe, examiner le nombre de rendez-vous concernés et
+   confirmer la suppression définitive.
+
+Les rendez-vous futurs concernés sont annulés au cours de la suppression.
+Cette opération n'est pas réversible.
 
 ## Vérifications
 
