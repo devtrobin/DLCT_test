@@ -8,3 +8,6 @@ Ces étapes à permit de prendre un maximum de contexte et de donnée par ChatGP
 - Authentification et comptes : inscription client/restaurateur, connexion,
   déconnexion, sessions PostgreSQL, récupération de mot de passe de démo,
   consultation/modification/suppression du compte et tests d'intégration.
+- Calendrier professionnel : recherche, disponibilités hebdomadaires,
+  indisponibilités, contrôle de version, aperçu des annulations et génération
+  de créneaux sur sept jours avec Luxon.
